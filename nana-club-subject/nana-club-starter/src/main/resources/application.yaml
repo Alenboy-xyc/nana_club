@@ -1,0 +1,39 @@
+server:
+  port: 9001
+spring:
+  datasource:
+    username: root
+    password: j7GJz3hCoxTPIy2qiSDsRG61F0BRNVFkhK20fY4uVcwrUSAnNU8GStjlJck2JmRKLIs5LM3lbvG3DGoG1NCEcw==
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shanzhu-club?characterEncoding=utf-8&useUnicode=true&serverTimezone=Asia/Shanghai
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 20
+      min-idle: 20
+      max-active: 100
+      max-wait: 60000
+      ##mysql密码加密
+      connection-properties: config.decrypt=true;config.decrypt.key=${publicKey}
+      ##druid控制界面
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: 123456
+      ##慢sql日志
+      filter:
+        stat:
+          enabled: true
+          slow-sql-millis: 2000
+          log-slow-sql: true
+        wall:
+          enabled: true
+        ##密码加密需要开启
+        config:
+          enabled: true
+publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKezLJXlX8D+/duDadZ+i5OCQmZIY7StMfX1O6QN1JUCl/EVOdUYaL3uMQAhX7XPbcImnRvrGsu4bSYe/QVr9P0CAwEAAQ==
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  config: classpath:log4j2-spring.xml
